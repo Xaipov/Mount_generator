@@ -1,201 +1,201 @@
-setblock 151 -56 -42 minecraft:dirt
-setblock 152 -56 -42 minecraft:dirt
-setblock -80 -42 -41 minecraft:dirt
-setblock -79 -42 -41 minecraft:dirt
-setblock -78 -42 -41 minecraft:dirt
-setblock -77 -42 -41 minecraft:stone
-setblock -76 -42 -41 minecraft:dirt
-fill -80 -45 -41 -76 -43 -41 minecraft:dirt
-fill -80 -48 -41 -76 -46 -41 minecraft:stone
-fill -80 -58 -41 -76 -58 -41 minecraft:stone
-setblock -75 -41 -41 minecraft:dirt
-setblock -74 -41 -41 minecraft:dirt
-fill -75 -44 -41 -74 -42 -41 minecraft:dirt
-fill -75 -47 -41 -74 -45 -41 minecraft:stone
-fill -75 -58 -41 -74 -58 -41 minecraft:stone
-setblock -73 -40 -41 minecraft:dirt
-setblock -72 -40 -41 minecraft:dirt
-fill -73 -43 -41 -72 -41 -41 minecraft:dirt
-fill -73 -46 -41 -72 -44 -41 minecraft:stone
-fill -73 -58 -41 -72 -58 -41 minecraft:stone
-setblock -71 -39 -41 minecraft:dirt
-setblock -70 -39 -41 minecraft:dirt
-fill -71 -42 -41 -70 -40 -41 minecraft:dirt
-fill -71 -45 -41 -70 -43 -41 minecraft:stone
-fill -71 -58 -41 -70 -58 -41 minecraft:stone
-setblock -69 -38 -41 minecraft:dirt
-setblock -68 -38 -41 minecraft:dirt
-fill -69 -41 -41 -68 -39 -41 minecraft:dirt
-fill -69 -44 -41 -68 -42 -41 minecraft:stone
-fill -69 -58 -41 -68 -58 -41 minecraft:stone
-setblock -67 -37 -41 minecraft:stone
-fill -67 -40 -41 -67 -38 -41 minecraft:dirt
-fill -67 -43 -41 -67 -41 -41 minecraft:stone
-fill -67 -58 -41 -67 -58 -41 minecraft:stone
-setblock -66 -36 -41 minecraft:dirt
-fill -66 -39 -41 -66 -37 -41 minecraft:dirt
-fill -66 -42 -41 -66 -40 -41 minecraft:stone
-fill -66 -58 -41 -66 -58 -41 minecraft:stone
-setblock -65 -35 -41 minecraft:dirt
-setblock -64 -35 -41 minecraft:stone
-fill -65 -38 -41 -64 -36 -41 minecraft:dirt
-fill -65 -41 -41 -64 -39 -41 minecraft:stone
-fill -65 -58 -41 -64 -58 -41 minecraft:stone
-setblock -63 -34 -41 minecraft:dirt
-fill -63 -37 -41 -63 -35 -41 minecraft:dirt
-fill -63 -40 -41 -63 -38 -41 minecraft:stone
-fill -63 -58 -41 -63 -58 -41 minecraft:stone
-setblock -62 -33 -41 minecraft:dirt
-fill -62 -36 -41 -62 -34 -41 minecraft:dirt
-fill -62 -39 -41 -62 -37 -41 minecraft:stone
-fill -62 -58 -41 -62 -58 -41 minecraft:stone
-setblock -61 -32 -41 minecraft:dirt
-fill -61 -35 -41 -61 -33 -41 minecraft:dirt
-fill -61 -38 -41 -61 -36 -41 minecraft:stone
-fill -61 -58 -41 -61 -58 -41 minecraft:stone
-setblock -60 -31 -41 minecraft:stone
-setblock -59 -31 -41 minecraft:dirt
-fill -60 -34 -41 -59 -32 -41 minecraft:dirt
-fill -60 -37 -41 -59 -35 -41 minecraft:stone
-fill -60 -58 -41 -59 -58 -41 minecraft:stone
-setblock -58 -30 -41 minecraft:dirt
-fill -58 -33 -41 -58 -31 -41 minecraft:dirt
-fill -58 -36 -41 -58 -34 -41 minecraft:stone
-fill -58 -58 -41 -58 -58 -41 minecraft:stone
-setblock -57 -29 -41 minecraft:stone
-fill -57 -32 -41 -57 -30 -41 minecraft:dirt
-fill -57 -35 -41 -57 -33 -41 minecraft:stone
-fill -57 -58 -41 -57 -58 -41 minecraft:stone
-setblock -56 -28 -41 minecraft:dirt
-fill -56 -31 -41 -56 -29 -41 minecraft:dirt
-fill -56 -34 -41 -56 -32 -41 minecraft:stone
-fill -56 -58 -41 -56 -58 -41 minecraft:stone
-setblock -55 -27 -41 minecraft:dirt
-setblock -54 -27 -41 minecraft:dirt
-fill -55 -30 -41 -54 -28 -41 minecraft:dirt
-fill -55 -33 -41 -54 -31 -41 minecraft:stone
-fill -55 -58 -41 -54 -58 -41 minecraft:stone
-setblock -53 -26 -41 minecraft:dirt
-fill -53 -29 -41 -53 -27 -41 minecraft:dirt
-fill -53 -32 -41 -53 -30 -41 minecraft:stone
-fill -53 -58 -41 -53 -58 -41 minecraft:stone
-setblock -52 -25 -41 minecraft:dirt
-fill -52 -28 -41 -52 -26 -41 minecraft:dirt
-fill -52 -31 -41 -52 -29 -41 minecraft:stone
-fill -52 -58 -41 -52 -58 -41 minecraft:stone
-setblock -51 -24 -41 minecraft:stone
-setblock -50 -24 -41 minecraft:dirt
-fill -51 -27 -41 -50 -25 -41 minecraft:dirt
-fill -51 -30 -41 -50 -28 -41 minecraft:stone
-fill -51 -58 -41 -50 -58 -41 minecraft:stone
-setblock -49 -23 -41 minecraft:dirt
-fill -49 -26 -41 -49 -24 -41 minecraft:dirt
-fill -49 -29 -41 -49 -27 -41 minecraft:stone
-fill -49 -58 -41 -49 -58 -41 minecraft:stone
-setblock -48 -22 -41 minecraft:stone
-fill -48 -25 -41 -48 -23 -41 minecraft:dirt
-fill -48 -28 -41 -48 -26 -41 minecraft:stone
-fill -48 -58 -41 -48 -58 -41 minecraft:stone
-setblock -47 -21 -41 minecraft:dirt
-setblock -46 -21 -41 minecraft:dirt
-fill -47 -24 -41 -46 -22 -41 minecraft:dirt
-fill -47 -27 -41 -46 -25 -41 minecraft:stone
-fill -47 -58 -41 -46 -58 -41 minecraft:stone
-setblock -45 -20 -41 minecraft:dirt
-fill -45 -23 -41 -45 -21 -41 minecraft:dirt
-fill -45 -26 -41 -45 -24 -41 minecraft:stone
-fill -45 -58 -41 -45 -58 -41 minecraft:stone
-setblock -44 -19 -41 minecraft:stone
-setblock -43 -19 -41 minecraft:dirt
-fill -44 -22 -41 -43 -20 -41 minecraft:dirt
-fill -44 -25 -41 -43 -23 -41 minecraft:stone
-fill -44 -58 -41 -43 -58 -41 minecraft:stone
-setblock -42 -18 -41 minecraft:dirt
-setblock -41 -18 -41 minecraft:dirt
-fill -42 -21 -41 -41 -19 -41 minecraft:dirt
-fill -42 -24 -41 -41 -22 -41 minecraft:stone
-fill -42 -58 -41 -41 -58 -41 minecraft:stone
-setblock -40 -17 -41 minecraft:dirt
-fill -40 -20 -41 -40 -18 -41 minecraft:dirt
-fill -40 -23 -41 -40 -21 -41 minecraft:stone
-fill -40 -58 -41 -40 -58 -41 minecraft:stone
-setblock -39 -16 -41 minecraft:dirt
-setblock -38 -16 -41 minecraft:dirt
-fill -39 -19 -41 -38 -17 -41 minecraft:dirt
-fill -39 -22 -41 -38 -20 -41 minecraft:stone
-fill -39 -58 -41 -38 -58 -41 minecraft:stone
-setblock -37 -15 -41 minecraft:dirt
-setblock -36 -15 -41 minecraft:dirt
-fill -37 -18 -41 -36 -16 -41 minecraft:dirt
-fill -37 -21 -41 -36 -19 -41 minecraft:stone
-fill -37 -58 -41 -36 -58 -41 minecraft:stone
-setblock -35 -14 -41 minecraft:dirt
-setblock -34 -14 -41 minecraft:dirt
-fill -35 -17 -41 -34 -15 -41 minecraft:dirt
-fill -35 -20 -41 -34 -18 -41 minecraft:stone
-fill -35 -58 -41 -34 -58 -41 minecraft:stone
-setblock -33 -13 -41 minecraft:dirt
-setblock -32 -13 -41 minecraft:dirt
-fill -33 -16 -41 -32 -14 -41 minecraft:dirt
-fill -33 -19 -41 -32 -17 -41 minecraft:stone
-fill -33 -58 -41 -32 -58 -41 minecraft:stone
-setblock -31 -12 -41 minecraft:dirt
-setblock -30 -12 -41 minecraft:dirt
-fill -31 -15 -41 -30 -13 -41 minecraft:dirt
-fill -31 -18 -41 -30 -16 -41 minecraft:stone
-fill -31 -58 -41 -30 -58 -41 minecraft:stone
-setblock -29 -11 -41 minecraft:dirt
-setblock -28 -11 -41 minecraft:stone
-fill -29 -14 -41 -28 -12 -41 minecraft:dirt
-fill -29 -17 -41 -28 -15 -41 minecraft:stone
-fill -29 -58 -41 -28 -58 -41 minecraft:stone
-setblock -27 -10 -41 minecraft:dirt
-setblock -26 -10 -41 minecraft:dirt
-fill -27 -13 -41 -26 -11 -41 minecraft:dirt
-fill -27 -16 -41 -26 -14 -41 minecraft:stone
-fill -27 -58 -41 -26 -58 -41 minecraft:stone
-setblock -25 -9 -41 minecraft:dirt
-setblock -24 -9 -41 minecraft:dirt
-setblock -23 -9 -41 minecraft:stone
-fill -25 -12 -41 -23 -10 -41 minecraft:dirt
-fill -25 -15 -41 -23 -13 -41 minecraft:stone
-fill -25 -58 -41 -23 -58 -41 minecraft:stone
-setblock -22 -8 -41 minecraft:stone
-setblock -21 -8 -41 minecraft:dirt
-fill -22 -11 -41 -21 -9 -41 minecraft:dirt
-fill -22 -14 -41 -21 -12 -41 minecraft:stone
-fill -22 -58 -41 -21 -58 -41 minecraft:stone
-setblock -20 -7 -41 minecraft:dirt
-setblock -19 -7 -41 minecraft:dirt
-setblock -18 -7 -41 minecraft:dirt
-fill -20 -10 -41 -18 -8 -41 minecraft:dirt
-fill -20 -13 -41 -18 -11 -41 minecraft:stone
-fill -20 -58 -41 -18 -58 -41 minecraft:stone
-setblock -17 -6 -41 minecraft:stone
-setblock -16 -6 -41 minecraft:dirt
-setblock -15 -6 -41 minecraft:dirt
-fill -17 -9 -41 -15 -7 -41 minecraft:dirt
-fill -17 -12 -41 -15 -10 -41 minecraft:stone
-fill -17 -58 -41 -15 -58 -41 minecraft:stone
-setblock -14 -5 -41 minecraft:stone
-setblock -13 -5 -41 minecraft:dirt
-setblock -12 -5 -41 minecraft:dirt
-fill -14 -8 -41 -12 -6 -41 minecraft:dirt
-fill -14 -11 -41 -12 -9 -41 minecraft:stone
-fill -14 -58 -41 -12 -58 -41 minecraft:stone
-setblock -11 -4 -41 minecraft:dirt
-fill -11 -7 -41 -11 -5 -41 minecraft:dirt
-fill -11 -10 -41 -11 -8 -41 minecraft:stone
-fill -11 -58 -41 -11 -58 -41 minecraft:stone
-setblock -10 -4 -41 minecraft:dirt
-fill -10 -5 -41 -10 -5 -41 minecraft:dirt
-fill -10 -10 -41 -10 -6 -41 minecraft:stone
-fill -10 -58 -41 -10 -58 -41 minecraft:stone
-setblock -9 0 -41 minecraft:dirt
-fill -9 -1 -41 -9 -1 -41 minecraft:dirt
-fill -9 -6 -41 -9 -2 -41 minecraft:stone
-fill -9 -58 -41 -9 -58 -41 minecraft:stone
-setblock -8 0 -41 minecraft:dirt
-setblock -7 0 -41 minecraft:dirt
-setblock -6 0 -41 minecraft:stone
+fill -231 17 -193 -231 17 -193 stone
+setblock -231 18 -193 grass_block
+fill -230 16 -193 -230 16 -193 stone
+setblock -230 17 -193 stone
+fill -229 16 -193 -229 16 -193 stone
+setblock -229 17 -193 grass_block
+fill -228 16 -193 -228 16 -193 stone
+setblock -228 17 -193 grass_block
+fill -227 16 -193 -227 16 -193 stone
+setblock -227 17 -193 grass_block
+fill -226 16 -193 -226 16 -193 stone
+setblock -226 17 -193 grass_block
+fill -225 16 -193 -225 16 -193 stone
+setblock -225 17 -193 grass_block
+fill -224 16 -193 -224 16 -193 stone
+setblock -224 17 -193 grass_block
+fill -223 16 -193 -223 16 -193 stone
+setblock -223 17 -193 grass_block
+fill -222 16 -193 -222 16 -193 stone
+setblock -222 17 -193 grass_block
+fill -221 16 -193 -221 16 -193 stone
+setblock -221 17 -193 grass_block
+fill -220 16 -193 -220 16 -193 stone
+setblock -220 17 -193 grass_block
+fill -219 16 -193 -219 16 -193 stone
+setblock -219 17 -193 grass_block
+fill -218 16 -193 -218 16 -193 stone
+setblock -218 17 -193 grass_block
+fill -217 16 -193 -217 16 -193 stone
+setblock -217 17 -193 grass_block
+fill -216 16 -193 -216 16 -193 stone
+setblock -216 17 -193 stone
+fill -215 16 -193 -215 16 -193 stone
+setblock -215 17 -193 grass_block
+fill -214 16 -193 -214 16 -193 stone
+setblock -214 17 -193 grass_block
+fill -213 16 -193 -213 16 -193 stone
+setblock -213 17 -193 grass_block
+fill -212 16 -193 -212 16 -193 stone
+setblock -212 17 -193 grass_block
+fill -211 16 -193 -211 16 -193 stone
+setblock -211 17 -193 grass_block
+fill -210 16 -193 -210 16 -193 stone
+setblock -210 17 -193 stone
+fill -209 16 -193 -209 16 -193 stone
+setblock -209 17 -193 stone
+fill -208 16 -193 -208 16 -193 stone
+setblock -208 17 -193 grass_block
+fill -207 16 -193 -207 16 -193 stone
+setblock -207 17 -193 stone
+fill -206 16 -193 -206 16 -193 stone
+setblock -206 17 -193 grass_block
+fill -205 16 -193 -205 16 -193 stone
+setblock -205 17 -193 grass_block
+fill -204 15 -193 -204 15 -193 stone
+setblock -204 16 -193 grass_block
+fill -203 15 -193 -203 15 -193 stone
+setblock -203 16 -193 grass_block
+fill -202 15 -193 -202 15 -193 stone
+setblock -202 16 -193 stone
+fill -201 15 -193 -201 15 -193 stone
+setblock -201 16 -193 grass_block
+fill -200 15 -193 -200 15 -193 stone
+setblock -200 16 -193 grass_block
+fill -199 15 -193 -199 15 -193 stone
+setblock -199 16 -193 stone
+fill -198 15 -193 -198 15 -193 stone
+setblock -198 16 -193 stone
+fill -197 15 -193 -197 15 -193 stone
+setblock -197 16 -193 grass_block
+fill -196 15 -193 -196 15 -193 stone
+setblock -196 16 -193 grass_block
+fill -195 15 -193 -195 15 -193 stone
+setblock -195 16 -193 grass_block
+fill -194 15 -193 -194 15 -193 stone
+setblock -194 16 -193 stone
+fill -193 14 -193 -193 14 -193 stone
+setblock -193 15 -193 grass_block
+fill -192 14 -193 -192 14 -193 stone
+setblock -192 15 -193 grass_block
+fill -172 12 -193 -172 12 -193 stone
+setblock -172 13 -193 grass_block
+fill -171 12 -193 -171 12 -193 stone
+setblock -171 13 -193 grass_block
+fill -170 12 -193 -170 12 -193 stone
+setblock -170 13 -193 grass_block
+fill -169 12 -193 -169 12 -193 stone
+setblock -169 13 -193 grass_block
+fill -168 12 -193 -168 12 -193 stone
+setblock -168 13 -193 grass_block
+fill -167 12 -193 -167 12 -193 stone
+setblock -167 13 -193 grass_block
+fill -166 12 -193 -166 12 -193 stone
+setblock -166 13 -193 grass_block
+fill -165 12 -193 -165 12 -193 stone
+setblock -165 13 -193 stone
+fill -164 12 -193 -164 12 -193 stone
+setblock -164 13 -193 stone
+fill -163 12 -193 -163 12 -193 stone
+setblock -163 13 -193 stone
+fill -162 12 -193 -162 12 -193 stone
+setblock -162 13 -193 grass_block
+fill -161 12 -193 -161 12 -193 stone
+setblock -161 13 -193 stone
+fill -160 12 -193 -160 12 -193 stone
+setblock -160 13 -193 grass_block
+fill -124 10 -193 -124 10 -193 stone
+setblock -124 11 -193 grass_block
+fill -123 10 -193 -123 10 -193 stone
+setblock -123 11 -193 grass_block
+fill -122 9 -193 -122 9 -193 stone
+setblock -122 10 -193 grass_block
+fill -121 9 -193 -121 9 -193 stone
+setblock -121 10 -193 stone
+fill -120 9 -193 -120 9 -193 stone
+setblock -120 10 -193 grass_block
+fill -119 9 -193 -119 9 -193 stone
+setblock -119 10 -193 grass_block
+fill -118 9 -193 -118 9 -193 stone
+setblock -118 10 -193 grass_block
+fill -117 9 -193 -117 9 -193 stone
+setblock -117 10 -193 grass_block
+fill -116 9 -193 -116 9 -193 stone
+setblock -116 10 -193 grass_block
+fill -115 9 -193 -115 9 -193 stone
+setblock -115 10 -193 grass_block
+fill -114 8 -193 -114 8 -193 stone
+setblock -114 9 -193 grass_block
+fill -113 8 -193 -113 8 -193 stone
+setblock -113 9 -193 grass_block
+fill -112 8 -193 -112 8 -193 stone
+setblock -112 9 -193 grass_block
+fill -111 8 -193 -111 8 -193 stone
+setblock -111 9 -193 grass_block
+fill -110 8 -193 -110 8 -193 stone
+setblock -110 9 -193 stone
+fill -109 7 -193 -109 7 -193 stone
+setblock -109 8 -193 grass_block
+fill -108 7 -193 -108 7 -193 stone
+setblock -108 8 -193 grass_block
+fill -107 7 -193 -107 7 -193 stone
+setblock -107 8 -193 grass_block
+fill -106 7 -193 -106 7 -193 stone
+setblock -106 8 -193 grass_block
+fill -105 6 -193 -105 6 -193 stone
+setblock -105 7 -193 grass_block
+fill -104 6 -193 -104 6 -193 stone
+setblock -104 7 -193 grass_block
+fill -103 6 -193 -103 6 -193 stone
+setblock -103 7 -193 grass_block
+fill -102 5 -193 -102 5 -193 stone
+setblock -102 6 -193 grass_block
+fill -101 5 -193 -101 5 -193 stone
+setblock -101 6 -193 grass_block
+fill -100 4 -193 -100 4 -193 stone
+setblock -100 5 -193 grass_block
+fill -99 4 -193 -99 4 -193 stone
+setblock -99 5 -193 grass_block
+fill -98 3 -193 -98 3 -193 stone
+setblock -98 4 -193 stone
+fill -97 0 -193 -97 3 -193 stone
+setblock -97 4 -193 stone
+fill -96 2 -193 -96 2 -193 stone
+setblock -96 3 -193 stone
+fill -95 -1 -193 -95 2 -193 stone
+setblock -95 3 -193 stone
+fill -94 1 -193 -94 1 -193 stone
+setblock -94 2 -193 stone
+fill -93 -2 -193 -93 1 -193 stone
+setblock -93 2 -193 stone
+fill -92 -3 -193 -92 0 -193 stone
+setblock -92 1 -193 stone
+fill -91 0 -193 -91 0 -193 stone
+setblock -91 1 -193 grass_block
+fill -90 -4 -193 -90 -1 -193 stone
+setblock -90 0 -193 stone
+fill -89 -5 -193 -89 -2 -193 stone
+setblock -89 -1 -193 stone
+fill -88 -5 -193 -88 -2 -193 stone
+setblock -88 -1 -193 stone
+fill -87 -6 -193 -87 -3 -193 stone
+setblock -87 -2 -193 stone
+fill -86 -7 -193 -86 -4 -193 stone
+setblock -86 -3 -193 stone
+fill -85 -8 -193 -85 -5 -193 stone
+setblock -85 -4 -193 stone
+fill -84 -8 -193 -84 -5 -193 stone
+setblock -84 -4 -193 stone
+fill -83 -9 -193 -83 -6 -193 stone
+setblock -83 -5 -193 stone
+fill -82 -10 -193 -82 -7 -193 stone
+setblock -82 -6 -193 stone
+fill -81 -11 -193 -81 -8 -193 stone
+setblock -81 -7 -193 stone
+fill -80 -12 -193 -80 -9 -193 stone
+setblock -80 -8 -193 stone
+fill -79 -13 -193 -79 -10 -193 stone
+setblock -79 -9 -193 stone
+fill -78 -13 -193 -78 -10 -193 stone
+setblock -78 -9 -193 stone
 schedule function akina:build_1085 1t

@@ -1,201 +1,201 @@
-fill 362 -55 -359 370 -55 -359 createdieselgenerators:asphalt_block
-fill 397 -56 -359 402 -56 -359 createdieselgenerators:asphalt_slab
-fill 403 -57 -359 415 -57 -359 createdieselgenerators:asphalt_block
-fill 118 -35 -358 126 -35 -358 createdieselgenerators:asphalt_slab
-fill 136 -36 -358 141 -36 -358 createdieselgenerators:asphalt_block
-fill 142 -36 -358 157 -36 -358 createdieselgenerators:asphalt_slab
-fill 282 -49 -358 295 -49 -358 createdieselgenerators:asphalt_slab
-fill 308 -51 -358 313 -51 -358 createdieselgenerators:asphalt_block
-fill 314 -51 -358 316 -51 -358 createdieselgenerators:asphalt_slab
-fill 320 -52 -358 330 -52 -358 createdieselgenerators:asphalt_block
-fill 337 -53 -358 345 -53 -358 createdieselgenerators:asphalt_slab
-fill 347 -53 -358 347 -53 -358 createdieselgenerators:asphalt_slab
-fill 348 -54 -358 356 -54 -358 createdieselgenerators:asphalt_block
-fill 362 -55 -358 370 -55 -358 createdieselgenerators:asphalt_block
-fill 394 -56 -358 403 -56 -358 createdieselgenerators:asphalt_slab
-fill 404 -57 -358 414 -57 -358 createdieselgenerators:asphalt_block
-fill 118 -35 -357 126 -35 -357 createdieselgenerators:asphalt_slab
-fill 138 -36 -357 141 -36 -357 createdieselgenerators:asphalt_block
-fill 142 -36 -357 157 -36 -357 createdieselgenerators:asphalt_slab
-fill 283 -49 -357 294 -49 -357 createdieselgenerators:asphalt_slab
-fill 308 -51 -357 312 -51 -357 createdieselgenerators:asphalt_block
-fill 313 -51 -357 317 -51 -357 createdieselgenerators:asphalt_slab
-fill 320 -52 -357 329 -52 -357 createdieselgenerators:asphalt_block
-fill 337 -53 -357 348 -53 -357 createdieselgenerators:asphalt_slab
-fill 349 -54 -357 356 -54 -357 createdieselgenerators:asphalt_block
-fill 362 -55 -357 371 -55 -357 createdieselgenerators:asphalt_block
-fill 392 -56 -357 404 -56 -357 createdieselgenerators:asphalt_slab
-fill 405 -57 -357 412 -57 -357 createdieselgenerators:asphalt_block
-fill 118 -35 -356 126 -35 -356 createdieselgenerators:asphalt_slab
-fill 140 -36 -356 141 -36 -356 createdieselgenerators:asphalt_block
-fill 142 -36 -356 156 -36 -356 createdieselgenerators:asphalt_slab
-fill 284 -49 -356 293 -49 -356 createdieselgenerators:asphalt_slab
-fill 309 -51 -356 310 -51 -356 createdieselgenerators:asphalt_block
-fill 311 -51 -356 317 -51 -356 createdieselgenerators:asphalt_slab
-fill 319 -51 -356 320 -51 -356 createdieselgenerators:asphalt_slab
-fill 321 -52 -356 328 -52 -356 createdieselgenerators:asphalt_block
-fill 338 -53 -356 349 -53 -356 createdieselgenerators:asphalt_slab
-fill 350 -54 -356 355 -54 -356 createdieselgenerators:asphalt_block
-fill 363 -55 -356 371 -55 -356 createdieselgenerators:asphalt_block
-fill 389 -56 -356 389 -56 -356 createdieselgenerators:asphalt_block
-fill 390 -56 -356 404 -56 -356 createdieselgenerators:asphalt_slab
-fill 405 -57 -356 410 -57 -356 createdieselgenerators:asphalt_block
-fill 118 -35 -355 126 -35 -355 createdieselgenerators:asphalt_slab
-fill 143 -36 -355 155 -36 -355 createdieselgenerators:asphalt_slab
-fill 287 -49 -355 290 -49 -355 createdieselgenerators:asphalt_slab
-fill 309 -51 -355 321 -51 -355 createdieselgenerators:asphalt_slab
-fill 322 -52 -355 328 -52 -355 createdieselgenerators:asphalt_block
-fill 338 -53 -355 350 -53 -355 createdieselgenerators:asphalt_slab
-fill 351 -54 -355 354 -54 -355 createdieselgenerators:asphalt_block
-fill 363 -55 -355 368 -55 -355 createdieselgenerators:asphalt_block
-fill 369 -55 -355 371 -55 -355 createdieselgenerators:asphalt_slab
-fill 387 -56 -355 389 -56 -355 createdieselgenerators:asphalt_block
-fill 390 -56 -355 405 -56 -355 createdieselgenerators:asphalt_slab
-fill 406 -57 -355 408 -57 -355 createdieselgenerators:asphalt_block
-fill 118 -35 -354 126 -35 -354 createdieselgenerators:asphalt_block
-fill 144 -36 -354 155 -36 -354 createdieselgenerators:asphalt_slab
-fill 309 -51 -354 322 -51 -354 createdieselgenerators:asphalt_slab
-fill 323 -52 -354 327 -52 -354 createdieselgenerators:asphalt_block
-fill 338 -53 -354 351 -53 -354 createdieselgenerators:asphalt_slab
-fill 352 -54 -354 353 -54 -354 createdieselgenerators:asphalt_block
-fill 363 -55 -354 367 -55 -354 createdieselgenerators:asphalt_block
-fill 368 -55 -354 371 -55 -354 createdieselgenerators:asphalt_slab
-fill 383 -56 -354 390 -56 -354 createdieselgenerators:asphalt_block
-fill 391 -56 -354 405 -56 -354 createdieselgenerators:asphalt_slab
-fill 406 -57 -354 406 -57 -354 createdieselgenerators:asphalt_block
-fill 118 -35 -353 126 -35 -353 createdieselgenerators:asphalt_block
-fill 145 -36 -353 154 -36 -353 createdieselgenerators:asphalt_slab
-fill 310 -51 -353 323 -51 -353 createdieselgenerators:asphalt_slab
-fill 324 -52 -353 327 -52 -353 createdieselgenerators:asphalt_block
-fill 339 -53 -353 352 -53 -353 createdieselgenerators:asphalt_slab
-fill 363 -55 -353 366 -55 -353 createdieselgenerators:asphalt_block
-fill 367 -55 -353 371 -55 -353 createdieselgenerators:asphalt_slab
-fill 382 -56 -353 390 -56 -353 createdieselgenerators:asphalt_block
-fill 391 -56 -353 405 -56 -353 createdieselgenerators:asphalt_slab
-fill 118 -35 -352 127 -35 -352 createdieselgenerators:asphalt_block
-fill 147 -36 -352 153 -36 -352 createdieselgenerators:asphalt_slab
-fill 310 -51 -352 324 -51 -352 createdieselgenerators:asphalt_slab
-fill 325 -52 -352 326 -52 -352 createdieselgenerators:asphalt_block
-fill 339 -53 -352 352 -53 -352 createdieselgenerators:asphalt_slab
-fill 363 -55 -352 364 -55 -352 createdieselgenerators:asphalt_block
-fill 365 -55 -352 371 -55 -352 createdieselgenerators:asphalt_slab
-fill 379 -56 -352 390 -56 -352 createdieselgenerators:asphalt_block
-fill 391 -56 -352 402 -56 -352 createdieselgenerators:asphalt_slab
-fill 119 -35 -351 127 -35 -351 createdieselgenerators:asphalt_block
-fill 148 -36 -351 151 -36 -351 createdieselgenerators:asphalt_slab
-fill 311 -51 -351 325 -51 -351 createdieselgenerators:asphalt_slab
-fill 339 -53 -351 351 -53 -351 createdieselgenerators:asphalt_slab
-fill 363 -55 -351 371 -55 -351 createdieselgenerators:asphalt_slab
-fill 377 -56 -351 390 -56 -351 createdieselgenerators:asphalt_block
-fill 391 -56 -351 401 -56 -351 createdieselgenerators:asphalt_slab
-fill 119 -35 -350 127 -35 -350 createdieselgenerators:asphalt_block
-fill 311 -51 -350 324 -51 -350 createdieselgenerators:asphalt_slab
-fill 340 -53 -350 350 -53 -350 createdieselgenerators:asphalt_slab
-fill 363 -55 -350 371 -55 -350 createdieselgenerators:asphalt_slab
-fill 375 -55 -350 375 -55 -350 createdieselgenerators:asphalt_slab
-fill 376 -56 -350 390 -56 -350 createdieselgenerators:asphalt_block
-fill 391 -56 -350 397 -56 -350 createdieselgenerators:asphalt_slab
-fill 119 -35 -349 127 -35 -349 createdieselgenerators:asphalt_block
-fill 312 -51 -349 323 -51 -349 createdieselgenerators:asphalt_slab
-fill 341 -53 -349 348 -53 -349 createdieselgenerators:asphalt_slab
-fill 363 -55 -349 375 -55 -349 createdieselgenerators:asphalt_slab
-fill 376 -56 -349 390 -56 -349 createdieselgenerators:asphalt_block
-fill 391 -56 -349 394 -56 -349 createdieselgenerators:asphalt_slab
-fill 120 -35 -348 128 -35 -348 createdieselgenerators:asphalt_block
-fill 313 -51 -348 321 -51 -348 createdieselgenerators:asphalt_slab
-fill 342 -53 -348 347 -53 -348 createdieselgenerators:asphalt_slab
-fill 363 -55 -348 376 -55 -348 createdieselgenerators:asphalt_slab
-fill 377 -56 -348 390 -56 -348 createdieselgenerators:asphalt_block
-fill 391 -56 -348 391 -56 -348 createdieselgenerators:asphalt_slab
-fill 120 -35 -347 128 -35 -347 createdieselgenerators:asphalt_block
-fill 315 -51 -347 320 -51 -347 createdieselgenerators:asphalt_slab
-fill 364 -55 -347 376 -55 -347 createdieselgenerators:asphalt_slab
-fill 377 -56 -347 390 -56 -347 createdieselgenerators:asphalt_block
-fill 120 -35 -346 128 -35 -346 createdieselgenerators:asphalt_block
-fill 364 -55 -346 376 -55 -346 createdieselgenerators:asphalt_slab
-fill 377 -56 -346 387 -56 -346 createdieselgenerators:asphalt_block
-fill 120 -35 -345 129 -35 -345 createdieselgenerators:asphalt_block
-fill 364 -55 -345 376 -55 -345 createdieselgenerators:asphalt_slab
-fill 377 -56 -345 384 -56 -345 createdieselgenerators:asphalt_block
-fill 121 -35 -344 129 -35 -344 createdieselgenerators:asphalt_block
-fill 364 -55 -344 376 -55 -344 createdieselgenerators:asphalt_slab
-fill 377 -56 -344 381 -56 -344 createdieselgenerators:asphalt_block
-fill 121 -35 -343 129 -35 -343 createdieselgenerators:asphalt_block
-fill 365 -55 -343 376 -55 -343 createdieselgenerators:asphalt_slab
-fill 377 -56 -343 380 -56 -343 createdieselgenerators:asphalt_block
-fill 121 -35 -342 130 -35 -342 createdieselgenerators:asphalt_block
-fill 366 -55 -342 376 -55 -342 createdieselgenerators:asphalt_slab
-fill 377 -56 -342 378 -56 -342 createdieselgenerators:asphalt_block
-fill 121 -35 -341 128 -35 -341 createdieselgenerators:asphalt_block
-fill 129 -34 -341 130 -34 -341 createdieselgenerators:asphalt_slab
-fill 368 -55 -341 374 -55 -341 createdieselgenerators:asphalt_slab
-fill 122 -35 -340 123 -35 -340 createdieselgenerators:asphalt_block
-fill 124 -34 -340 131 -34 -340 createdieselgenerators:asphalt_slab
-fill 122 -34 -339 131 -34 -339 createdieselgenerators:asphalt_slab
-fill 123 -34 -338 132 -34 -338 createdieselgenerators:asphalt_slab
-fill 123 -34 -337 133 -34 -337 createdieselgenerators:asphalt_slab
-fill 124 -34 -336 134 -34 -336 createdieselgenerators:asphalt_slab
-fill 125 -34 -335 135 -34 -335 createdieselgenerators:asphalt_slab
-fill 125 -34 -334 136 -34 -334 createdieselgenerators:asphalt_slab
-fill 126 -34 -333 137 -34 -333 createdieselgenerators:asphalt_slab
-fill 127 -34 -332 137 -34 -332 createdieselgenerators:asphalt_slab
-fill 138 -34 -332 138 -34 -332 createdieselgenerators:asphalt_block
-fill 127 -34 -331 136 -34 -331 createdieselgenerators:asphalt_slab
-fill 137 -34 -331 140 -34 -331 createdieselgenerators:asphalt_block
-fill 128 -34 -330 135 -34 -330 createdieselgenerators:asphalt_slab
-fill 136 -34 -330 143 -34 -330 createdieselgenerators:asphalt_block
-fill 129 -34 -329 134 -34 -329 createdieselgenerators:asphalt_slab
-fill 135 -34 -329 146 -34 -329 createdieselgenerators:asphalt_block
-fill 131 -34 -328 133 -34 -328 createdieselgenerators:asphalt_slab
-fill 134 -34 -328 149 -34 -328 createdieselgenerators:asphalt_block
-fill 150 -33 -328 151 -33 -328 createdieselgenerators:asphalt_slab
-fill 132 -34 -327 132 -34 -327 createdieselgenerators:asphalt_slab
-fill 133 -34 -327 149 -34 -327 createdieselgenerators:asphalt_block
-fill 150 -33 -327 158 -33 -327 createdieselgenerators:asphalt_slab
-fill 133 -34 -326 149 -34 -326 createdieselgenerators:asphalt_block
-fill 150 -33 -326 159 -33 -326 createdieselgenerators:asphalt_slab
-fill 134 -34 -325 149 -34 -325 createdieselgenerators:asphalt_block
-fill 150 -33 -325 164 -33 -325 createdieselgenerators:asphalt_slab
-fill 136 -34 -324 149 -34 -324 createdieselgenerators:asphalt_block
-fill 150 -33 -324 164 -33 -324 createdieselgenerators:asphalt_slab
-fill 165 -33 -324 165 -33 -324 createdieselgenerators:asphalt_block
-fill 137 -34 -323 149 -34 -323 createdieselgenerators:asphalt_block
-fill 150 -33 -323 164 -33 -323 createdieselgenerators:asphalt_slab
-fill 165 -33 -323 167 -33 -323 createdieselgenerators:asphalt_block
-fill 141 -34 -322 149 -34 -322 createdieselgenerators:asphalt_block
-fill 150 -33 -322 164 -33 -322 createdieselgenerators:asphalt_slab
-fill 165 -33 -322 169 -33 -322 createdieselgenerators:asphalt_block
-fill 143 -34 -321 149 -34 -321 createdieselgenerators:asphalt_block
-fill 150 -33 -321 164 -33 -321 createdieselgenerators:asphalt_slab
-fill 165 -33 -321 172 -33 -321 createdieselgenerators:asphalt_block
-fill 146 -34 -320 149 -34 -320 createdieselgenerators:asphalt_block
-fill 150 -33 -320 164 -33 -320 createdieselgenerators:asphalt_slab
-fill 165 -33 -320 173 -33 -320 createdieselgenerators:asphalt_block
-fill 151 -33 -319 164 -33 -319 createdieselgenerators:asphalt_slab
-fill 165 -33 -319 175 -33 -319 createdieselgenerators:asphalt_block
-fill 157 -33 -318 164 -33 -318 createdieselgenerators:asphalt_slab
-fill 165 -33 -318 177 -33 -318 createdieselgenerators:asphalt_block
-fill 159 -33 -317 163 -33 -317 createdieselgenerators:asphalt_slab
-fill 164 -33 -317 178 -33 -317 createdieselgenerators:asphalt_block
-fill 163 -33 -316 163 -33 -316 createdieselgenerators:asphalt_slab
-fill 164 -33 -316 180 -33 -316 createdieselgenerators:asphalt_block
-fill 164 -33 -315 180 -33 -315 createdieselgenerators:asphalt_block
-fill 181 -32 -315 181 -32 -315 createdieselgenerators:asphalt_slab
-fill 167 -33 -314 179 -33 -314 createdieselgenerators:asphalt_block
-fill 180 -32 -314 182 -32 -314 createdieselgenerators:asphalt_slab
-fill 168 -33 -313 178 -33 -313 createdieselgenerators:asphalt_block
-fill 179 -32 -313 182 -32 -313 createdieselgenerators:asphalt_slab
-fill 171 -33 -312 177 -33 -312 createdieselgenerators:asphalt_block
-fill 178 -32 -312 184 -32 -312 createdieselgenerators:asphalt_slab
-fill 172 -33 -311 176 -33 -311 createdieselgenerators:asphalt_block
-fill 177 -32 -311 185 -32 -311 createdieselgenerators:asphalt_slab
-fill 174 -33 -310 175 -33 -310 createdieselgenerators:asphalt_block
-fill 176 -32 -310 186 -32 -310 createdieselgenerators:asphalt_slab
-fill 175 -32 -309 186 -32 -309 createdieselgenerators:asphalt_slab
-fill 176 -32 -308 187 -32 -308 createdieselgenerators:asphalt_slab
-fill 177 -32 -307 188 -32 -307 createdieselgenerators:asphalt_slab
-fill 178 -32 -306 188 -32 -306 createdieselgenerators:asphalt_slab
-fill 180 -32 -305 188 -32 -305 createdieselgenerators:asphalt_slab
-fill 180 -32 -304 188 -32 -304 createdieselgenerators:asphalt_slab
-fill 181 -32 -303 189 -32 -303 createdieselgenerators:asphalt_slab
+setblock -156 13 -126 grass_block
+fill -155 11 -126 -155 11 -126 stone
+setblock -155 12 -126 grass_block
+fill -154 11 -126 -154 11 -126 stone
+setblock -154 12 -126 grass_block
+fill -153 10 -126 -153 10 -126 stone
+setblock -153 11 -126 stone
+fill -152 10 -126 -152 10 -126 stone
+setblock -152 11 -126 grass_block
+fill -151 9 -126 -151 9 -126 stone
+setblock -151 10 -126 grass_block
+fill -150 8 -126 -150 8 -126 stone
+setblock -150 9 -126 grass_block
+fill -149 8 -126 -149 8 -126 stone
+setblock -149 9 -126 grass_block
+fill -148 7 -126 -148 7 -126 stone
+setblock -148 8 -126 grass_block
+fill -147 6 -126 -147 6 -126 stone
+setblock -147 7 -126 grass_block
+fill -146 2 -126 -146 5 -126 stone
+setblock -146 6 -126 stone
+fill -145 0 -126 -145 3 -126 stone
+setblock -145 4 -126 stone
+fill -144 2 -126 -144 2 -126 stone
+setblock -144 3 -126 grass_block
+fill -143 1 -126 -143 1 -126 stone
+setblock -143 2 -126 grass_block
+fill -142 -3 -126 -142 0 -126 stone
+setblock -142 1 -126 stone
+fill -141 -5 -126 -141 -2 -126 stone
+setblock -141 -1 -126 stone
+fill -140 -7 -126 -140 -4 -126 stone
+setblock -140 -3 -126 stone
+fill -139 -8 -126 -139 -5 -126 stone
+setblock -139 -4 -126 stone
+fill -138 -10 -126 -138 -7 -126 stone
+setblock -138 -6 -126 stone
+fill -137 -12 -126 -137 -9 -126 stone
+setblock -137 -8 -126 stone
+fill -136 -14 -126 -136 -11 -126 stone
+setblock -136 -10 -126 stone
+fill -135 -16 -126 -135 -13 -126 stone
+setblock -135 -12 -126 stone
+fill -134 -18 -126 -134 -15 -126 stone
+setblock -134 -14 -126 stone
+fill -133 -20 -126 -133 -17 -126 stone
+setblock -133 -16 -126 stone
+fill -132 -22 -126 -132 -19 -126 stone
+setblock -132 -18 -126 stone
+fill -131 -24 -126 -131 -21 -126 stone
+setblock -131 -20 -126 stone
+fill -130 -26 -126 -130 -23 -126 stone
+setblock -130 -22 -126 stone
+fill -129 -28 -126 -129 -25 -126 stone
+setblock -129 -24 -126 stone
+fill -128 -30 -126 -128 -27 -126 stone
+setblock -128 -26 -126 stone
+fill -127 -32 -126 -127 -29 -126 stone
+setblock -127 -28 -126 stone
+fill -126 -34 -126 -126 -31 -126 stone
+setblock -126 -30 -126 stone
+fill -125 -36 -126 -125 -33 -126 stone
+setblock -125 -32 -126 stone
+fill -124 -38 -126 -124 -35 -126 stone
+setblock -124 -34 -126 stone
+fill -123 -40 -126 -123 -37 -126 stone
+setblock -123 -36 -126 stone
+fill -122 -41 -126 -122 -38 -126 stone
+setblock -122 -37 -126 stone
+fill -121 -43 -126 -121 -40 -126 stone
+setblock -121 -39 -126 stone
+fill -120 -45 -126 -120 -42 -126 stone
+setblock -120 -41 -126 stone
+fill -119 -46 -126 -119 -43 -126 stone
+setblock -119 -42 -126 stone
+fill -118 -48 -126 -118 -45 -126 stone
+setblock -118 -44 -126 stone
+fill -117 -46 -126 -117 -46 -126 stone
+setblock -117 -45 -126 grass_block
+fill -116 -47 -126 -116 -47 -126 stone
+setblock -116 -46 -126 grass_block
+fill -115 -48 -126 -115 -48 -126 stone
+setblock -115 -47 -126 grass_block
+fill -114 -52 -126 -114 -49 -126 stone
+setblock -114 -48 -126 stone
+fill -113 -53 -126 -113 -50 -126 stone
+setblock -113 -49 -126 stone
+fill -112 -54 -126 -112 -51 -126 stone
+setblock -112 -50 -126 stone
+fill -111 -52 -126 -111 -52 -126 stone
+setblock -111 -51 -126 grass_block
+fill -110 -53 -126 -110 -53 -126 stone
+setblock -110 -52 -126 grass_block
+fill -109 -54 -126 -109 -54 -126 stone
+setblock -109 -53 -126 grass_block
+fill -108 -54 -126 -108 -54 -126 stone
+setblock -108 -53 -126 grass_block
+fill -107 -55 -126 -107 -55 -126 stone
+setblock -107 -54 -126 grass_block
+fill -106 -55 -126 -106 -55 -126 stone
+setblock -106 -54 -126 grass_block
+fill -105 -56 -126 -105 -56 -126 stone
+setblock -105 -55 -126 grass_block
+fill -104 -56 -126 -104 -56 -126 stone
+setblock -104 -55 -126 grass_block
+fill -103 -57 -126 -103 -57 -126 stone
+setblock -103 -56 -126 grass_block
+fill -102 -57 -126 -102 -57 -126 stone
+setblock -102 -56 -126 grass_block
+fill -101 -57 -126 -101 -57 -126 stone
+setblock -101 -56 -126 grass_block
+setblock -100 -57 -126 grass_block
+setblock -99 -57 -126 grass_block
+setblock -98 -57 -126 stone
+setblock -97 -57 -126 grass_block
+setblock -96 -57 -126 grass_block
+setblock 108 -57 -126 stone
+setblock 109 -57 -126 grass_block
+setblock 110 -57 -126 grass_block
+setblock 111 -57 -126 stone
+setblock 112 -57 -126 grass_block
+setblock 113 -57 -126 grass_block
+setblock 114 -57 -126 stone
+setblock 115 -57 -126 grass_block
+setblock 116 -57 -126 grass_block
+setblock 117 -57 -126 grass_block
+setblock 118 -57 -126 grass_block
+setblock 119 -57 -126 grass_block
+setblock 120 -57 -126 grass_block
+setblock 121 -57 -126 grass_block
+setblock 122 -57 -126 stone
+setblock 123 -57 -126 grass_block
+setblock 124 -57 -126 grass_block
+setblock 125 -57 -126 grass_block
+setblock 126 -57 -126 grass_block
+setblock 127 -57 -126 grass_block
+setblock 128 -57 -126 stone
+setblock 129 -57 -126 grass_block
+setblock 130 -57 -126 stone
+setblock 131 -57 -126 grass_block
+setblock 132 -57 -126 grass_block
+setblock 133 -57 -126 grass_block
+setblock 134 -57 -126 grass_block
+setblock 135 -57 -126 grass_block
+setblock 136 -57 -126 stone
+setblock 137 -57 -126 grass_block
+setblock 138 -57 -126 grass_block
+setblock 139 -57 -126 grass_block
+setblock 140 -57 -126 grass_block
+setblock 141 -57 -126 grass_block
+setblock 142 -57 -126 grass_block
+setblock 143 -57 -126 grass_block
+setblock 144 -57 -126 grass_block
+setblock 145 -57 -126 grass_block
+setblock 146 -57 -126 grass_block
+setblock 147 -57 -126 grass_block
+setblock 148 -57 -126 grass_block
+setblock 149 -57 -126 stone
+setblock 150 -57 -126 grass_block
+setblock -330 -57 -125 grass_block
+setblock -329 -57 -125 grass_block
+setblock -328 -57 -125 grass_block
+setblock -327 -57 -125 grass_block
+fill -326 -57 -125 -326 -57 -125 stone
+setblock -326 -56 -125 grass_block
+fill -325 -57 -125 -325 -57 -125 stone
+setblock -325 -56 -125 grass_block
+fill -324 -56 -125 -324 -56 -125 stone
+setblock -324 -55 -125 stone
+fill -323 -56 -125 -323 -56 -125 stone
+setblock -323 -55 -125 grass_block
+fill -322 -55 -125 -322 -55 -125 stone
+setblock -322 -54 -125 grass_block
+fill -321 -54 -125 -321 -54 -125 stone
+setblock -321 -53 -125 grass_block
+fill -320 -53 -125 -320 -53 -125 stone
+setblock -320 -52 -125 grass_block
+fill -319 -52 -125 -319 -52 -125 stone
+setblock -319 -51 -125 grass_block
+fill -318 -51 -125 -318 -51 -125 stone
+setblock -318 -50 -125 grass_block
+fill -317 -50 -125 -317 -50 -125 stone
+setblock -317 -49 -125 grass_block
+fill -316 -49 -125 -316 -49 -125 stone
+setblock -316 -48 -125 grass_block
+fill -315 -51 -125 -315 -48 -125 stone
+setblock -315 -47 -125 stone
+fill -314 -49 -125 -314 -46 -125 stone
+setblock -314 -45 -125 stone
+fill -313 -48 -125 -313 -45 -125 stone
+setblock -313 -44 -125 stone
+fill -312 -46 -125 -312 -43 -125 stone
+setblock -312 -42 -125 stone
+fill -311 -45 -125 -311 -42 -125 stone
+setblock -311 -41 -125 stone
+fill -310 -43 -125 -310 -40 -125 stone
+setblock -310 -39 -125 stone
+fill -309 -41 -125 -309 -38 -125 stone
+setblock -309 -37 -125 stone
+fill -308 -39 -125 -308 -36 -125 stone
 schedule function akina:build_1248 1t

@@ -10,6 +10,8 @@ from mountain_config import (
     LEFT_CARVE_DEPTH, RIGHT_CLIFF_DROP, EDGE_FADE_MARGIN, EDGE_FADE_FLOOR_OFFSET,
     FINISH_TAPER_END_MARGIN, FINISH_TAPER_LENGTH, STEEP_SLOPE_THRESHOLD,
     MOUNTAIN_SMOOTH_SIGMA,
+    # Новые параметры для генерации команд
+    SHELL_THICKNESS, MAX_RADIUS, SLOPE_FACTOR,
 )
 
 
@@ -56,11 +58,13 @@ def compute_mountain_height(mask, skel_pts, dist_map, tree_skel, pixel_y,
                             mountain_smooth_sigma=MOUNTAIN_SMOOTH_SIGMA,
                             flat_base_y=None):
     """
-    Вычисляет высоту горы через проекцию вдоль трассы (не по прямой!).
+    Вычисляет высоту горы через проекцию вдоль трассы.
+    Карта высот остается естественной, защита дороги работает через road_buffer_mask в mountain_commands.py.
     """
+    import numpy as np
+    from scipy.ndimage import gaussian_filter, median_filter
 
     base_y = max(Y_END - 20, WORLD_MIN_Y)
-
     h, w = mask.shape
     if flat_base_y is None:
         flat_base_y = int(np.mean(list(pixel_y.values()))) if pixel_y else 0
@@ -73,132 +77,144 @@ def compute_mountain_height(mask, skel_pts, dist_map, tree_skel, pixel_y,
         empty = np.full((h, w), flat_base_y, dtype=np.int32)
         return empty, np.zeros((h, w), dtype=bool)
 
-    # ── Используем скелет как основу ─────────────
-    skel_tree = cKDTree(skel_pts)
-    all_pts = np.array([(z, x) for z in range(h) for x in range(w)])
-    dists_to_skel, nn_skel_idx = skel_tree.query(all_pts, workers=-1)
-    nearest_skel_pt = skel_pts[nn_skel_idx]
+    # 1. Создаем базовую карту высот, инициализированную минимальной высотой
+    mountain_y = np.full((h, w), base_y, dtype=np.float32)
 
-    # Расстояние вдоль трассы от старта
-    max_route_dist = max(dist_map.values()) if dist_map else 0.0
-    route_dist_flat = np.zeros(len(all_pts), dtype=np.float32)
-    for i in range(len(all_pts)):
-        ns = tuple(nearest_skel_pt[i])
-        route_dist_flat[i] = dist_map.get(ns, max_route_dist)
+    # 2. "Разливаем" высоту от каждой точки дороги, беря максимум
+    radius = int(near_radius * 2.5)
 
-    # ── Маппинг скелет → side/series ──────────────
-    road_tree = cKDTree(road_pts)
-    _, nn_skel_to_road = road_tree.query(skel_pts)
+    for i, rp in enumerate(road_pts):
+        rz, rx = rp
+        rp_key = (int(rz), int(rx))
+        road_h = pixel_y.get(rp_key, flat_base_y)
 
-    skel_side = {}
-    skel_series = {}
-    side_map = side_map or {}
-    series_map = series_map or {}
+        # Границы окна вокруг точки дороги
+        z_min = max(0, rz - radius)
+        z_max = min(h, rz + radius + 1)
+        x_min = max(0, rx - radius)
+        x_max = min(w, rx + radius + 1)
 
-    for i, sp in enumerate(skel_pts):
-        rp = road_pts[nn_skel_to_road[i]]
-        rp_key = (int(rp[0]), int(rp[1]))
-        skel_side[tuple(sp)] = side_map.get(rp_key)
-        skel_series[tuple(sp)] = series_map.get(rp_key, False)
+        # Создаем 2D сетку координат
+        zz, xx = np.ogrid[z_min:z_max, x_min:x_max]
 
-    # ── Вычисляем высоту ────────────────────────
-    mountain_y_flat = np.zeros(len(all_pts), dtype=np.float32)
+        # 2D массив расстояний
+        dist = np.sqrt((zz - rz) ** 2 + (xx - rx) ** 2)
 
-    for i in range(len(all_pts)):
-        z, x = all_pts[i]
-        d_to_skel = float(dists_to_skel[i])
-        ns = tuple(nearest_skel_pt[i])
+        # 2D булева маска
+        valid = dist <= radius
 
-        # Находим ближайшую точку дороги
-        rp = road_pts[nn_skel_to_road[nn_skel_idx[i]]]
-        rp_key = (int(rp[0]), int(rp[1]))
-        road_y = pixel_y.get(rp_key, flat_base_y)
+        # Рассчитываем высоту
+        drop = dist * mountain_slope
+        local_h = road_h + drop
 
-        side = skel_side.get(ns)
-        is_series = skel_series.get(ns, False)
-        noise_val = noise_field[z, x]
+        # Массив-кандидат
+        candidate_heights = np.where(valid, local_h, base_y)
 
-        # Локальный пик над точкой дороги
-        macro_val = macro_noise_field[rp_key[0], rp_key[1]]
-        cur_curvature = curvature.get(ns, 0.0) if curvature else 0.0
+        # Обновляем глобальную карту, беря максимум
+        mountain_y[z_min:z_max, x_min:x_max] = np.maximum(
+            mountain_y[z_min:z_max, x_min:x_max],
+            candidate_heights
+        )
 
-        # ─ ПРАВКА 1: После 30 блоков от старта гора ниже трассы на 1 блок ──
-        current_route_dist = route_dist_flat[i]
-        adjusted_road_y = road_y
-        if current_route_dist >= 30:
-            adjusted_road_y = road_y - 1
+    # 3. Добавляем шум
+    mountain_y += noise_field * 0.5
+    mountain_y += macro_noise_field * 0.3
 
-        # ── Расчет целевой высоты "стены" (target) ──
-        if cur_curvature < 0.08:  # прямая
-            target = adjusted_road_y + 2  # минимальная высота
-        elif is_series:  # серия поворотов
-            target = adjusted_road_y + 3  # почти нет стены
-        else:  # одиночный поворот
-            local_pad = max(MACRO_PAD_MIN, mountain_pad + macro_val)
-            if side == 'left':
-                target = adjusted_road_y + local_pad - left_carve_depth
-            else:
-                target = adjusted_road_y + local_pad
-
-        # ── ПРАВКА 2: Убрали "лишнее расстояние" (плоскую полку) ──
-        # Теперь переход от дороги к стене идет сразу (через smoothstep)
-        if d_to_skel <= near_radius:
-            t = _smoothstep(d_to_skel / near_radius) if near_radius > 0 else 1.0
-            val = adjusted_road_y + (target - adjusted_road_y) * t
-        else:
-            slope_drop = (d_to_skel - near_radius) * mountain_slope
-            val = target - slope_drop + noise_val
-            if val < base_y:
-                val = base_y
-
-        mountain_y_flat[i] = val
-
-    raw_height = mountain_y_flat.reshape(h, w)
-    route_dist_grid = route_dist_flat.reshape(h, w)
-    dist_to_skel_grid = dists_to_skel.reshape(h, w)
-
-    far_mask = dist_to_skel_grid > near_radius
-
-    # ── Сглаживание ───────────────────────────────
+    # 4. Сглаживаем ВСЮ карту высот
     if mountain_smooth_sigma > 0:
-        smoothed_height = gaussian_filter(raw_height, sigma=mountain_smooth_sigma)
-        raw_height = np.where(far_mask, smoothed_height, raw_height)
+        mountain_y = gaussian_filter(mountain_y, sigma=mountain_smooth_sigma)
 
-        smoothed_route_dist = gaussian_filter(route_dist_grid, sigma=mountain_smooth_sigma)
-        route_dist_grid = np.where(far_mask, smoothed_route_dist, route_dist_grid)
+    # Дополнительное медианное сглаживание
+    mountain_y = median_filter(mountain_y, size=3)
 
-    result = np.round(raw_height).astype(np.int32)
-    result = median_filter(result, size=5)
-
+    # 5. Затухание к краям карты
     floor_y = base_y + EDGE_FADE_FLOOR_OFFSET
     factor = np.ones((h, w), dtype=np.float32)
 
     if edge_fade_margin > 0:
         zz, xx = np.indices((h, w))
         edge_dist = np.minimum.reduce([zz, xx, h - 1 - zz, w - 1 - xx]).astype(np.float32)
-        if mountain_smooth_sigma > 0:
-            edge_dist = gaussian_filter(edge_dist, sigma=mountain_smooth_sigma)
         t_edge = np.clip(edge_dist / edge_fade_margin, 0.0, 1.0)
         factor = np.minimum(factor, t_edge * t_edge * (3 - 2 * t_edge))
 
-    if finish_taper_length > 0:
-        dist_to_finish = max_route_dist - route_dist_grid
-        t_finish = np.clip(
-            (dist_to_finish - finish_taper_end_margin) / finish_taper_length, 0.0, 1.0
-        )
-        factor = np.minimum(factor, t_finish * t_finish * (3 - 2 * t_finish))
+    # Применяем затухание
+    faded = floor_y + (mountain_y - floor_y) * factor
 
-    faded = floor_y + (result.astype(np.float32) - floor_y) * factor
-
-    if mountain_smooth_sigma > 0:
-        smoothed_faded = gaussian_filter(faded, sigma=mountain_smooth_sigma)
-        faded = np.where(far_mask, smoothed_faded, faded)
-
+    # Финальное округление
     result = np.round(faded).astype(np.int32)
 
-    # Маска крутых склонов
-    gz, gx = np.gradient(faded)
+    # 6. Маска крутых склонов
+    gz, gx = np.gradient(result.astype(np.float32))
     slope_mag = np.sqrt(gz ** 2 + gx ** 2)
     steep_mask = slope_mag > steep_slope_threshold
 
     return result, steep_mask
+
+
+def generate_mountain_commands(mountain_y, steep_mask, config, skel_to_pixel=None):
+    """
+    Генерирует команды для датапака на основе карты высот.
+
+    КЛЮЧЕВОЕ ИСПРАВЛЕНИЕ: Полностью заполняет объем горы от base_y до верха,
+    чтобы не было воздушных карманов и "полок".
+
+    Args:
+        mountain_y: 2D numpy array с высотами (h, w)
+        steep_mask: 2D numpy array с маской крутых склонов
+        config: объект конфигурации
+        skel_to_pixel: dict для конвертации (z, x) → (mc_x, mc_z), если нужно
+
+    Returns:
+        list строк с командами Minecraft
+    """
+    import random
+
+    Y_END = getattr(config, 'Y_END', -58)
+    WORLD_MIN_Y = getattr(config, 'WORLD_MIN_Y', -64)
+    SHELL_THICKNESS = getattr(config, 'SHELL_THICKNESS', 1)
+
+    base_y = max(Y_END - 20, WORLD_MIN_Y)
+
+    h, w = mountain_y.shape
+    commands = []
+
+    # Проходим по всем пикселям карты высот
+    for z in range(h):
+        for x in range(w):
+            top_y = int(mountain_y[z, x])
+
+            # Пропускаем если высота ниже базовой
+            if top_y <= base_y:
+                continue
+
+            # Определяем Minecraft координаты
+            # Если skel_to_pixel предоставлен, используем его
+            if skel_to_pixel and (z, x) in skel_to_pixel:
+                mc_x, mc_z = skel_to_pixel[(z, x)]
+            else:
+                # По умолчанию: x → mc_x, z → mc_z (с центром в 0,0)
+                mc_x = x - w // 2
+                mc_z = z - h // 2
+
+            # 1. ЗАПОЛНЯЕМ ЯДРО ГОРЫ (камень) — это решает проблему воздушных карманов!
+            core_bottom = base_y
+            core_top = top_y - SHELL_THICKNESS
+
+            if core_top >= core_bottom:
+                # ОДНА команда fill на всю колонку = быстро и без пустот
+                commands.append(f"fill {mc_x} {core_bottom} {mc_z} {mc_x} {core_top} {mc_z} stone")
+
+            # 2. КОРКА ПОВЕРХНОСТИ (ровно 1 блок)
+            # 85% трава, 15% камень для разнообразия
+            is_steep = steep_mask[z, x] if isinstance(steep_mask, np.ndarray) else False
+
+            if is_steep:
+                # На крутых склонах — камень
+                surface_block = "stone"
+            else:
+                # На пологих — в основном трава
+                surface_block = "grass_block" if random.random() > 0.15 else "stone"
+
+            commands.append(f"setblock {mc_x} {top_y} {mc_z} {surface_block}")
+
+    return commands

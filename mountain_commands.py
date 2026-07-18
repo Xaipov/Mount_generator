@@ -1,11 +1,13 @@
 import numpy as np
 import random
+from scipy.ndimage import binary_dilation
 
-from mountain_config import STONE_BLOCK, DIRT_BLOCK, GRASS_BLOCK, DIRT_LAYERS, STEEP_DIRT_LAYERS
-from config import WORLD_MIN_Y, Y_END
-
+from mountain_config import (
+    FLAT_SHELL_THICKNESS, STEEP_SHELL_THICKNESS, ROAD_CLEARANCE
+)
+from config import Y_END
 STACK_SIZE = 64
-SHELL_THICKNESS = 7  # толщина корки горы (блоков от поверхности вниз)
+SHELL_THICKNESS = 1  # толщина корки горы (блоков от поверхности вниз)
 
 
 def format_as_stacks(count):
@@ -27,19 +29,10 @@ def format_as_stacks(count):
 def generate_mountain_commands(mountain_y, offset_x, offset_z, y_end, max_fill_len=32,
                                steep_mask=None, mask=None, pixel_y=None):
     """
-    Генерирует команды для ПОЛОЙ горы с толстой коркой (25 блоков).
-
-    Структура колонки (сверху вниз):
-    - 1 блок поверхности (трава 85% / камень 15%)
-    - DIRT_LAYERS (4) или STEEP_DIRT_LAYERS (1) грязи
-    - ~20 блоков камня (чтобы суммарно корка = 25 блоков)
-    - ВОЗДУХ (полая часть, если колонка > 25 блоков)
-    - 1 блок каменного пола на уровне base_y
-
-    Если колонка ниже base_y + 1 — пропускаем (ниже уровня трассы не ставим).
-    Если колонка ниже 25 блоков — ставим полностью (без пустоты внутри).
+    Генерирует команды для ПОЛОЙ горы.
+    Гора начинается от уровня дороги (асфальт на одном уровне с землей).
     """
-    base_y = y_end  # уровень финиша трассы = пол горы
+    base_y = y_end
     h, w = mountain_y.shape
     if steep_mask is None:
         steep_mask = np.zeros((h, w), dtype=bool)
@@ -49,107 +42,57 @@ def generate_mountain_commands(mountain_y, offset_x, offset_z, y_end, max_fill_l
         road_mask = mask > 128
 
     commands = []
+    floor_segments = []
+    current_floor_seg = None
 
     for z in range(h):
-        row = mountain_y[z]
-        steep_row = steep_mask[z]
-        road_row = road_mask[z]
+        for x in range(w):
+            # Пропускаем ТОЛЬКО саму дорогу (не защитную зону)
+            if road_mask[z, x]:
+                continue
 
-        start = 0
-        cur_top = row[0]
-        cur_steep = bool(steep_row[0])
+            top_y = int(mountain_y[z, x])
+            is_steep = bool(steep_mask[z, x])
 
-        for x in range(1, w + 1):
-            top = row[x] if x < w else None
-            steep = bool(steep_row[x]) if x < w else None
+            if top_y <= base_y:
+                continue
 
-            # Проверяем, есть ли трасса в этой колонке
-            has_road = road_row[x - 1] if x <= w else False
+            mc_x = x + offset_x
+            mc_z = z + offset_z
 
-            if top != cur_top or steep != cur_steep or x == w or has_road:
-                # Если есть трасса — заполняем колонку до уровня трассы
-                if has_road:
-                    road_y = int(pixel_y.get((z, x - 1), Y_END))
-                    # Заполняем до уровня трассы - 1 блок (чтобы трасса была сверху)
-                    cur_top = road_y - 1
-                    cur_steep = False  # под трассой не крутой склон
+            # Динамическая толщина корки
+            total_crust_thickness = STEEP_SHELL_THICKNESS if is_steep else FLAT_SHELL_THICKNESS
+            stone_layers = total_crust_thickness - 1
 
-                    if x < w:
-                        start = x
-                        # Для следующей колонки берём нормальную высоту
-                        cur_top = top
-                        cur_steep = bool(steep_row[x])
-                    continue
+            # Нижняя граница корки
+            shell_bottom = max(base_y + 1, top_y - stone_layers)
 
-                x1, x2 = start, x - 1
-                mc_x1 = x1 + offset_x
-                mc_x2 = x2 + offset_x
-                mc_z = z + offset_z
+            # Строим каменную часть корки
+            if shell_bottom <= top_y - 1:
+                commands.append(f"fill {mc_x} {shell_bottom} {mc_z} {mc_x} {top_y - 1} {mc_z} stone")
 
-                dirt_layers = STEEP_DIRT_LAYERS if cur_steep else DIRT_LAYERS
+            # Верхний блок поверхности
+            if is_steep:
+                surface_block = "stone"
+            else:
+                surface_block = "grass_block" if random.random() > 0.15 else "stone"
+            commands.append(f"setblock {mc_x} {top_y} {mc_z} {surface_block}")
 
-                # Если колонка слишком низкая — пропускаем
-                if cur_top <= base_y + 1:
-                    if x < w:
-                        start = x
-                        cur_top = top
-                        cur_steep = steep
-                    continue
+            # Собираем данные для сплошного пола
+            if current_floor_seg is None:
+                current_floor_seg = {'x1': mc_x, 'x2': mc_x, 'z': mc_z}
+            elif current_floor_seg['z'] == mc_z and current_floor_seg['x2'] + 1 == mc_x:
+                current_floor_seg['x2'] = mc_x
+            else:
+                floor_segments.append(current_floor_seg)
+                current_floor_seg = {'x1': mc_x, 'x2': mc_x, 'z': mc_z}
 
-                # Высота колонки
-                column_height = cur_top - base_y + 1
+    if current_floor_seg is not None:
+        floor_segments.append(current_floor_seg)
 
-                # Определяем толщину каменной "стены"
-                if column_height <= SHELL_THICKNESS:
-                    # Низкая колонка — полностью заполняем (корка = вся колонка)
-                    stone_thickness = column_height - 1 - dirt_layers
-                    is_hollow = False
-                else:
-                    # Высокая колонка — полая внутри
-                    stone_thickness = SHELL_THICKNESS - 1 - dirt_layers
-                    is_hollow = True
-
-                stone_thickness = max(0, stone_thickness)
-
-                seg_start = mc_x1
-                while seg_start <= mc_x2:
-                    seg_end = min(seg_start + max_fill_len - 1, mc_x2)
-
-                    # 1. Поверхность (рандом: 85% трава, 15% камень)
-                    for bx in range(seg_start, seg_end + 1):
-                        rand = random.random()
-                        if rand < 0.85:
-                            top_block = GRASS_BLOCK
-                        else:
-                            top_block = STONE_BLOCK
-                        commands.append(f"setblock {bx} {int(cur_top)} {mc_z} {top_block}")
-
-                    # 2. Слой грязи
-                    dirt_top = cur_top - 1
-                    dirt_bottom = cur_top - dirt_layers
-                    if dirt_top >= dirt_bottom and dirt_bottom >= base_y + 1:
-                        commands.append(
-                            f"fill {seg_start} {int(dirt_bottom)} {mc_z} {seg_end} {int(dirt_top)} {mc_z} {DIRT_BLOCK}")
-
-                    # 3. Каменная "стена"
-                    stone_top = dirt_bottom - 1
-                    stone_bottom = stone_top - stone_thickness + 1
-                    if stone_thickness > 0 and stone_top >= base_y + 1:
-                        stone_bottom = max(stone_bottom, base_y + 1)
-                        if stone_bottom <= stone_top:
-                            commands.append(
-                                f"fill {seg_start} {int(stone_bottom)} {mc_z} {seg_end} {int(stone_top)} {mc_z} {STONE_BLOCK}")
-
-                    # 4. Каменный "пол" на уровне base_y (только если колонка высокая)
-                    if is_hollow:
-                        commands.append(
-                            f"fill {seg_start} {int(base_y)} {mc_z} {seg_end} {int(base_y)} {mc_z} {STONE_BLOCK}")
-
-                    seg_start = seg_end + 1
-
-                start = x
-                cur_top = top
-                cur_steep = steep
+    # Генерируем СПЛОШНОЙ ПОЛ
+    for seg in floor_segments:
+        commands.append(f"fill {seg['x1']} {base_y} {seg['z']} {seg['x2']} {base_y} {seg['z']} stone")
 
     return commands
 
