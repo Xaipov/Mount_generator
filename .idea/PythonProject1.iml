@@ -7,4 +7,12 @@
     <orderEntry type="jdk" jdkName="Python 3.14 (PythonProject1) (2)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
+  <component name="TemplatesService">
+    <option name="TEMPLATE_FOLDERS">
+      <list>
+        <option value="$MODULE_DIR$/akina_datapack" />
+        <option value="$MODULE_DIR$/schematics" />
+      </list>
+    </option>
+  </component>
 </module>
