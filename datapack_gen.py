@@ -142,3 +142,31 @@ def create_datapack(commands, y_start=Y_START, all_commands=None, road_commands=
 
     print(f"✓ Всего команд: {len(commands)}, частей: {total_parts}")
     print(f"✓ В игре: /reload → /function akina:test → /function akina:start_build")
+
+def create_litematica_markers(func_dir, start_x, start_y, start_z,
+                               end_x, end_y, end_z, namespace=NAMESPACE):
+    """
+    Создаёт mcfunction для простановки двух маркерных точек litematica:
+    - Точка А — старт трассы (золото + sea lantern)
+    - Точка Б — финиш трассы (алмаз + beacon)
+
+    В игре: /function akina:mark_litematica
+    Потом в litematica выдели область от А до Б и сохрани схему.
+    """
+    filepath = os.path.join(func_dir, "mark_litematica.mcfunction")
+    with open(filepath, "w", encoding="utf-8", newline="\n") as f:
+        f.write("# === ТОЧКА А — СТАРТ ТРАССЫ ===\n")
+        f.write(f"fill {start_x} {start_y} {start_z} {start_x} {start_y + 2} {start_z} minecraft:gold_block\n")
+        f.write(f"setblock {start_x} {start_y + 3} {start_z} minecraft:sea_lantern\n")
+        f.write(f'tellraw @a [{{"text":"[LITEMATICA] Точка А (старт): X={start_x} Y={start_y} Z={start_z}","color":"gold","bold":true}}]\n')
+
+        f.write("\n# === ТОЧКА Б — ФИНИШ ТРАССЫ ===\n")
+        f.write(f"fill {end_x} {end_y} {end_z} {end_x} {end_y + 2} {end_z} minecraft:diamond_block\n")
+        f.write(f"setblock {end_x} {end_y + 3} {end_z} minecraft:beacon\n")
+        f.write(f'tellraw @a [{{"text":"[LITEMATICA] Точка Б (финиш): X={end_x} Y={end_y} Z={end_z}","color":"aqua","bold":true}}]\n')
+
+        f.write(f'\ntellraw @a [{{"text":"[LITEMATICA] Маркеры поставлены! Выдели область от А до Б.","color":"green"}}]\n')
+
+    print(f"✓ Маркеры litematica: /function {namespace}:mark_litematica")
+    print(f"  А (старт):  X={start_x} Y={start_y} Z={start_z}")
+    print(f"  Б (финиш): X={end_x} Y={end_y} Z={end_z}")

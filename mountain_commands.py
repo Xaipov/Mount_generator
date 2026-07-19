@@ -1,37 +1,51 @@
 import numpy as np
 import random
-from scipy.ndimage import binary_dilation
+from scipy.ndimage import binary_dilation, distance_transform_edt, label
 
 from mountain_config import (
     FLAT_SHELL_THICKNESS, STEEP_SHELL_THICKNESS, ROAD_CLEARANCE
 )
 from config import Y_END
-STACK_SIZE = 64
-SHELL_THICKNESS = 1  # толщина корки горы (блоков от поверхности вниз)
+
+DIRT_SHOULDER_WIDTH = 4
 
 
-def format_as_stacks(count):
-    """Форматирует количество блоков в 'стаки + остаток'."""
-    if count <= 0:
-        return "0 блоков"
+def _get_interior_mask(road_mask):
+    """
+    Возвращает маску пикселей внутри петель трассы.
+    Логика: заливаем снаружи (от краёв холста), всё что не залито и не дорога — внутри.
+    """
+    h, w = road_mask.shape
+    # Бинарная маска: 1 = можно идти (не дорога)
+    free = ~road_mask
 
-    stacks = count // STACK_SIZE
-    remainder = count % STACK_SIZE
+    # BFS/flood fill от всех краёв холста
+    outside = np.zeros((h, w), dtype=bool)
+    # Стартуем с граничных пикселей
+    border = np.zeros((h, w), dtype=bool)
+    border[0, :] = True
+    border[-1, :] = True
+    border[:, 0] = True
+    border[:, -1] = True
+    outside[border & free] = True
 
-    if stacks == 0:
-        return f"{remainder} блоков"
-    elif remainder == 0:
-        return f"{stacks} стак(ов)"
-    else:
-        return f"{stacks} стак(ов) + {remainder} блоков"
+    # Итеративная дилатация только по free-пикселям
+    from scipy.ndimage import binary_fill_holes
+    prev = None
+    kernel = np.ones((3, 3), dtype=bool)
+    while True:
+        expanded = binary_dilation(outside, structure=kernel) & free
+        if np.array_equal(expanded, outside):
+            break
+        outside = expanded
+
+    # Внутри = free но не outside и не дорога
+    interior = free & ~outside
+    return interior
 
 
 def generate_mountain_commands(mountain_y, offset_x, offset_z, y_end, max_fill_len=32,
                                steep_mask=None, mask=None, pixel_y=None):
-    """
-    Генерирует команды для ПОЛОЙ горы.
-    Гора начинается от уровня дороги (асфальт на одном уровне с землей).
-    """
     base_y = y_end
     h, w = mountain_y.shape
     if steep_mask is None:
@@ -41,14 +55,53 @@ def generate_mountain_commands(mountain_y, offset_x, offset_z, y_end, max_fill_l
     if mask is not None:
         road_mask = mask > 128
 
+    flat_base = int(np.mean(list(pixel_y.values()))) if pixel_y else 0
+    road_y_map = np.full((h, w), flat_base, dtype=np.float32)
+    if pixel_y:
+        for (rz, rx), ry in pixel_y.items():
+            road_y_map[rz, rx] = float(ry)
+
+    dist_to_road, nn_indices = distance_transform_edt(~road_mask, return_indices=True)
+    nearest_road_y = road_y_map[nn_indices[0], nn_indices[1]]
+
+    shoulder_mask = (dist_to_road > 0) & (dist_to_road <= DIRT_SHOULDER_WIDTH)
+
+    # Внутренность петель трассы — тоже dirt на уровне асфальта
+    interior_mask = _get_interior_mask(road_mask)
+
+    # Гора строится везде кроме дороги, обочины и внутренности петель
+    mountain_build_mask = (~road_mask) & (~shoulder_mask) & (~interior_mask)
+
     commands = []
     floor_segments = []
     current_floor_seg = None
 
+    # ── 1. Dirt-обочина (dist 1..4 от дороги) ───────────────────────────────────
     for z in range(h):
         for x in range(w):
-            # Пропускаем ТОЛЬКО саму дорогу (не защитную зону)
-            if road_mask[z, x]:
+            if not shoulder_mask[z, x]:
+                continue
+            road_y = int(nearest_road_y[z, x])
+            mc_x = x + offset_x
+            mc_z = z + offset_z
+            if road_y > base_y:
+                commands.append(f"fill {mc_x} {base_y} {mc_z} {mc_x} {road_y} {mc_z} minecraft:dirt")
+
+    # ── 2. Внутренность петель — dirt на уровне ближайшего асфальта ──────────────
+    for z in range(h):
+        for x in range(w):
+            if not interior_mask[z, x]:
+                continue
+            road_y = int(nearest_road_y[z, x])
+            mc_x = x + offset_x
+            mc_z = z + offset_z
+            if road_y > base_y:
+                commands.append(f"fill {mc_x} {base_y} {mc_z} {mc_x} {road_y} {mc_z} minecraft:dirt")
+
+    # ── 3. Гора (снаружи) ────────────────────────────────────────────────────────
+    for z in range(h):
+        for x in range(w):
+            if not mountain_build_mask[z, x]:
                 continue
 
             top_y = int(mountain_y[z, x])
@@ -60,25 +113,13 @@ def generate_mountain_commands(mountain_y, offset_x, offset_z, y_end, max_fill_l
             mc_x = x + offset_x
             mc_z = z + offset_z
 
-            # Динамическая толщина корки
-            total_crust_thickness = STEEP_SHELL_THICKNESS if is_steep else FLAT_SHELL_THICKNESS
-            stone_layers = total_crust_thickness - 1
+            # Сплошной столбик камня снизу доверху — никаких дыр
+            if base_y + 1 <= top_y - 1:
+                commands.append(f"fill {mc_x} {base_y + 1} {mc_z} {mc_x} {top_y - 1} {mc_z} minecraft:stone")
 
-            # Нижняя граница корки
-            shell_bottom = max(base_y + 1, top_y - stone_layers)
-
-            # Строим каменную часть корки
-            if shell_bottom <= top_y - 1:
-                commands.append(f"fill {mc_x} {shell_bottom} {mc_z} {mc_x} {top_y - 1} {mc_z} stone")
-
-            # Верхний блок поверхности
-            if is_steep:
-                surface_block = "stone"
-            else:
-                surface_block = "grass_block" if random.random() > 0.15 else "stone"
+            surface_block = "minecraft:dirt" if random.random() > 0.15 else "minecraft:stone"
             commands.append(f"setblock {mc_x} {top_y} {mc_z} {surface_block}")
 
-            # Собираем данные для сплошного пола
             if current_floor_seg is None:
                 current_floor_seg = {'x1': mc_x, 'x2': mc_x, 'z': mc_z}
             elif current_floor_seg['z'] == mc_z and current_floor_seg['x2'] + 1 == mc_x:
@@ -90,17 +131,26 @@ def generate_mountain_commands(mountain_y, offset_x, offset_z, y_end, max_fill_l
     if current_floor_seg is not None:
         floor_segments.append(current_floor_seg)
 
-    # Генерируем СПЛОШНОЙ ПОЛ
     for seg in floor_segments:
-        commands.append(f"fill {seg['x1']} {base_y} {seg['z']} {seg['x2']} {base_y} {seg['z']} stone")
+        commands.append(f"fill {seg['x1']} {base_y} {seg['z']} {seg['x2']} {base_y} {seg['z']} minecraft:stone")
 
     return commands
 
 
+def format_as_stacks(count):
+    if count <= 0:
+        return "0 блоков"
+    stacks = count // 64
+    remainder = count % 64
+    if stacks == 0:
+        return f"{remainder} блоков"
+    elif remainder == 0:
+        return f"{stacks} стак(ов)"
+    else:
+        return f"{stacks} стак(ов) + {remainder} блоков"
+
+
 def count_mountain_resources(mountain_y, steep_mask=None, mask=None):
-    """
-    Подсчитывает количество блоков для ПОЛОЙ горы с толстой коркой.
-    """
     base_y = Y_END
     h, w = mountain_y.shape
     if steep_mask is None:
@@ -110,49 +160,34 @@ def count_mountain_resources(mountain_y, steep_mask=None, mask=None):
     if mask is not None:
         road_mask = mask > 128
 
+    dist_to_road = distance_transform_edt(~road_mask)
+    shoulder_mask = (dist_to_road > 0) & (dist_to_road <= DIRT_SHOULDER_WIDTH)
+    interior_mask = _get_interior_mask(road_mask)
+
     stone_count = 0
-    dirt_count = 0
     surface_count = 0
+    dirt_shoulder_count = int((shoulder_mask | interior_mask).sum())
 
     for z in range(h):
         for x in range(w):
-            if road_mask[z, x]:
+            if road_mask[z, x] or shoulder_mask[z, x] or interior_mask[z, x]:
                 continue
-
-            top = int(mountain_y[z, x])
-            is_steep = bool(steep_mask[z, x])
-            dirt_layers = 1 if is_steep else 4
-
-            if top <= base_y + 1:
+            top_y = int(mountain_y[z, x])
+            if top_y <= base_y:
                 continue
-
-            column_height = top - base_y + 1
-
-            # Поверхность (1 блок)
+            stone_count += max(0, top_y - 1 - base_y)
+            stone_count += 1
             surface_count += 1
 
-            # Грязь
-            dirt_height = min(dirt_layers, column_height - 1)
-            dirt_count += max(0, dirt_height)
-
-            # Камень
-            if column_height <= SHELL_THICKNESS:
-                stone_height = column_height - 1 - dirt_height
-            else:
-                stone_height = SHELL_THICKNESS - 1 - dirt_height
-                stone_height += 1  # +1 за пол на base_y
-
-            stone_count += max(0, stone_height)
-
-    # Рандом: 85% трава, 15% камень
     grass_count = int(surface_count * 0.85)
     stone_surface_count = surface_count - grass_count
+    total_stone = stone_count + stone_surface_count
 
     return {
-        'stone': stone_count,
-        'stone_str': format_as_stacks(stone_count),
-        'dirt': dirt_count,
-        'dirt_str': format_as_stacks(dirt_count),
+        'stone': total_stone,
+        'stone_str': format_as_stacks(total_stone),
+        'dirt': dirt_shoulder_count,
+        'dirt_str': format_as_stacks(dirt_shoulder_count),
         'grass': grass_count,
         'grass_str': format_as_stacks(grass_count),
         'stone_surface': stone_surface_count,

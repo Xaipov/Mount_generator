@@ -3,7 +3,7 @@ from scipy.spatial import cKDTree
 from create_schematic import generate_create_schematic
 
 from config import (
-    IMAGE_PATH, START_X, START_Z, Y_END, DATAPACK_DIR,
+    IMAGE_PATH, START_X, START_Z, Y_END, DATAPACK_DIR, NAMESPACE,
     FLAT_START_BLOCKS, STEP_INTERVAL, SPEED_BLS,
 )
 from image_processing import find_red_point, get_mask, build_skeleton
@@ -15,7 +15,7 @@ from mountain_gen import (
 from mountain_commands import generate_mountain_commands, count_mountain_resources, format_as_stacks
 from road_direction import compute_road_direction, get_side
 from turn_classifier import detect_curvature, classify_turn_series, expand_series_flag_to_road
-from datapack_gen import create_datapack
+from datapack_gen import create_datapack, create_litematica_markers
 from mountain_preview import visualize_full
 
 
@@ -140,6 +140,20 @@ def main():
     print(f"\n✓ Всего команд (гора+трасса): {len(all_commands):,}")
 
     create_datapack(all_commands, y_start, all_commands=all_commands, road_commands=road_commands)
+
+    # 25002500 041c04300440043a04350440044b litematica 250025002500250025002500250025002500250025002500250025002500250025002500250025002500250025002500250025002500250025002500250025002500250025002500250025002500250025002500
+    finish_skel_pt = max(dist_map, key=dist_map.get)
+    finish_pz, finish_px = finish_skel_pt
+    finish_mc_x = int(finish_px) + offset_x
+    finish_mc_z = int(finish_pz) + offset_z
+    finish_mc_y = int(pixel_y.get(finish_skel_pt, Y_END))
+    import os as _os
+    func_dir = _os.path.join(DATAPACK_DIR, "data", NAMESPACE, "function")
+    create_litematica_markers(
+        func_dir,
+        start_x=START_X, start_y=y_start, start_z=START_Z,
+        end_x=finish_mc_x, end_y=finish_mc_y, end_z=finish_mc_z,
+    )
 
     print("\n=== ВИЗУАЛИЗАЦИЯ ===")
     visualize_full(
