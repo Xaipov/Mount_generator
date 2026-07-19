@@ -88,6 +88,17 @@ def main():
     series_count = sum(1 for v in series_map.values() if v)
     print(f"✓ В сериях поворотов: {series_count}, одиночные/прямые: {len(series_map) - series_count}")
 
+    # ── Применяем ручную разметку из turn_editor (если есть) ──────────────────
+    try:
+        from turn_editor import apply_manual_annotations
+        series_map = apply_manual_annotations(series_map)
+        series_count_after = sum(1 for v in series_map.values() if v)
+        if series_count_after != series_count:
+            print(f"✓ После ручной разметки: серий={series_count_after} (было {series_count})")
+    except ImportError:
+        pass  # turn_editor.py не установлен / PySide6 недоступен — работаем без него
+    # ──────────────────────────────────────────────────────────────────────────
+
     print(f"✓ Y_START={y_start}, генерирую шум...")
     noise_field = generate_noise_field(mask.shape)
     macro_noise_field = generate_macro_noise_field(mask.shape)
@@ -108,7 +119,6 @@ def main():
     )
     print(f"✓ Команд горы: {len(mountain_commands):,}")
 
-    # Подсчет ресурсов горы
     print("\n=== РЕСУРСЫ ДЛЯ ГОРЫ ===")
     mountain_resources = count_mountain_resources(mountain_y, steep_mask=steep_mask, mask=mask)
     print(f"  Камень (основание): {mountain_resources['stone']:,} → {mountain_resources['stone_str']}")
@@ -117,7 +127,6 @@ def main():
     print(
         f"  Камень (поверхность, 15%): {mountain_resources['stone_surface']:,} → {mountain_resources['stone_surface_str']}")
 
-    # Подсчет ресурсов трассы
     asphalt_blocks = sum(1 for v in pixel_slab.values() if not v) if pixel_slab else 0
     asphalt_slabs = sum(1 for v in pixel_slab.values() if v) if pixel_slab else 0
 
@@ -141,7 +150,6 @@ def main():
 
     create_datapack(all_commands, y_start, all_commands=all_commands, road_commands=road_commands)
 
-    # 25002500 041c04300440043a04350440044b litematica 250025002500250025002500250025002500250025002500250025002500250025002500250025002500250025002500250025002500250025002500250025002500250025002500250025002500250025002500
     finish_skel_pt = max(dist_map, key=dist_map.get)
     finish_pz, finish_px = finish_skel_pt
     finish_mc_x = int(finish_px) + offset_x
@@ -169,7 +177,6 @@ def main():
         steep_mask=steep_mask, filename="akina.nbt", output_dir="schematics"
     )
 
-
     print("\n" + "=" * 60)
     print("✅ ГОТОВО!")
     print("=" * 60)
@@ -182,6 +189,8 @@ def main():
     print("   /function akina:clear_build   — снос всего (гора + трасса)")
     print("   /function akina:clear_road    — снос только трассы")
     print("   /function akina:rebuild_road  — перестройка только трассы")
+    print("\n✏️  Редактор поворотов:")
+    print("   python turn_editor.py")
 
 
 if __name__ == "__main__":
